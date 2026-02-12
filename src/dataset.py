@@ -5,9 +5,8 @@ import torchvision.transforms as transforms
 from sklearn.model_selection import train_test_split
 import glob
 
-# ---------------------------------------------------------
-# 1. CLASS TrashDataset (Core Requirement)
-# ---------------------------------------------------------
+
+
 class TrashDataset(Dataset):
     def __init__(self, image_paths, labels, transform=None):
         """
@@ -30,7 +29,7 @@ class TrashDataset(Dataset):
         label = self.labels[idx]
 
         # 2. Mở ảnh bằng thư viện PIL (Python Imaging Library)
-        # convert('RGB') để đảm bảo ảnh có 3 kênh màu, tránh lỗi với ảnh xám hoặc PNG
+        # convert('RGB') để đảm bảo ảnh có 3 kênh màu
         image = Image.open(img_path).convert("RGB")
 
         # 3. Áp dụng transform (nếu có) để chuyển thành Tensor
@@ -39,18 +38,11 @@ class TrashDataset(Dataset):
 
         return image, label
 
-# ---------------------------------------------------------
-# 2. HÀM HỖ TRỢ ĐỌC DỮ LIỆU GỐC (Helper Function)
-# ---------------------------------------------------------
+
 def load_data_paths(root_dir):
-    """
-    Đọc toàn bộ đường dẫn ảnh và nhãn từ thư mục gốc.
-    Giả định cấu trúc: root_dir/class_name/image.jpg
-    """
+    
     all_image_paths = []
     all_labels = []
-    
-    # Lấy tên các folder làm class name, sắp xếp để index cố định
     classes = sorted(os.listdir(root_dir))
     class_to_idx = {cls_name: i for i, cls_name in enumerate(classes)}
     
@@ -60,8 +52,7 @@ def load_data_paths(root_dir):
         cls_folder = os.path.join(root_dir, cls_name)
         if not os.path.isdir(cls_folder):
             continue
-            
-        # Lấy tất cả ảnh jpg, png, jpeg
+       
         files = []
         for ext in ['*.jpg', '*.jpeg', '*.png']:
             files.extend(glob.glob(os.path.join(cls_folder, ext)))

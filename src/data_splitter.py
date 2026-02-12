@@ -3,7 +3,7 @@
 from torch.utils.data import DataLoader
 from sklearn.model_selection import train_test_split
 import torchvision.transforms as transforms
-# Import class TrashDataset và load_data_paths từ dataset.py
+
 from src.dataset import TrashDataset, load_data_paths 
 
 def get_monte_carlo_splits(root_dir, num_splits=5, batch_size=32, img_size=224):
@@ -15,7 +15,7 @@ def get_monte_carlo_splits(root_dir, num_splits=5, batch_size=32, img_size=224):
     all_paths, all_labels, class_names = load_data_paths(root_dir)
     
     # Define transforms (Chuẩn hóa dữ liệu cho Model)
-    # Train có thêm Data Augmentation
+    
     train_transform = transforms.Compose([
         transforms.Resize((img_size, img_size)),
         transforms.RandomHorizontalFlip(),
@@ -45,7 +45,7 @@ def get_monte_carlo_splits(root_dir, num_splits=5, batch_size=32, img_size=224):
         
         print(f"Train: {len(X_train)} | Val: {len(X_val)} | Test: {len(X_test)}")
 
-        # 3. Tạo Dataset Object
+      
         train_ds = TrashDataset(X_train, y_train, transform=train_transform)
         val_ds = TrashDataset(X_val, y_val, transform=eval_transform)
         test_ds = TrashDataset(X_test, y_test, transform=eval_transform)
