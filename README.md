@@ -17,27 +17,6 @@ Garbage_Classification/
 └── README.md                # Tài liệu hướng dẫn
 ```
 
-## 🚀 Cài đặt
-
-1. Clone dự án và cài đặt các thư viện phụ thuộc:
-```bash
-pip install -r requirements.txt
-```
-
-*Lưu ý: Nếu gặp lỗi khi cài đặt `clip`, bạn có thể cài trực tiếp từ GitHub:*
-```bash
-pip install git+https://github.com/openai/CLIP.git
-```
-
-## 🧠 Huấn luyện Mô hình
-
-File `train.py` hỗ trợ huấn luyện linh hoạt với `argparse`, giúp dễ dàng thay đổi siêu tham số (hyperparameters).
-
-**Cú pháp cơ bản:**
-```bash
-python train.py --data_dir ./Data --model_type vit --epochs 5
-```
-
 **Các tham số chính:**
 - `--data_dir`: Đường dẫn tới thư mục dataset.
 - `--model_type`: Chọn mô hình (`cnn`, `vit`, `clip`).
