@@ -20,19 +20,18 @@ class TrashDataset(Dataset):
         self.transform = transform
 
     def __len__(self):
-        # Trả về tổng số lượng ảnh trong tập này
+     
         return len(self.image_paths)
 
     def __getitem__(self, idx):
-        # 1. Lấy đường dẫn ảnh và nhãn tại vị trí idx
+  
         img_path = self.image_paths[idx]
         label = self.labels[idx]
 
-        # 2. Mở ảnh bằng thư viện PIL (Python Imaging Library)
-        # convert('RGB') để đảm bảo ảnh có 3 kênh màu
+     
         image = Image.open(img_path).convert("RGB")
 
-        # 3. Áp dụng transform (nếu có) để chuyển thành Tensor
+   
         if self.transform:
             image = self.transform(image)
 
